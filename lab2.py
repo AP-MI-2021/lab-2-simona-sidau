@@ -81,13 +81,42 @@ def test_get_age_in_days():
     assert get_age_in_days("01/10/2021") == 4
     assert get_age_in_days("29/02/2004") == 6428
 
+#Am ales problema 5
+def is_palindrome(n):
+    '''
+    Determina daca un numar este palindrom
+    :param n: numar intreg
+    :return: True, daca n este palindrom, False, in caz contrar
+    '''
+    ncopy = n
+    palindrom = 0
+    while ncopy:
+        palindrom = palindrom * 10 + ncopy %10
+        ncopy = ncopy // 10
+    if palindrom == n:
+        return True
+    else:
+        return False
+
+def test_is_palindrome():
+    '''
+    Functia test
+    '''
+    assert is_palindrome(123) == False
+    assert is_palindrome(123585321) == True
+    assert is_palindrome(45846) == False
+    assert is_palindrome(5) == True
+
+
 def main():
     test_get_age_in_days()
     test_get_largest_prime_below()
+    test_is_palindrome()
     shouldRun = True
     while shouldRun:
         print("1. Determinati ultimul numar prim mai mic decat un numar dat")
         print("2. Determinati varsta unei persoane in zile")
+        print("5.Determinati daca un numar dat este palindrom")
         print("x. Oprire program")
 
         optiune = input("Alegeti optiunea ")
@@ -100,6 +129,12 @@ def main():
         elif optiune =="2":
             dataNasterii = input("Introduceti data nasterii DD/MM/YYYY: ")
             print(get_age_in_days(dataNasterii))
+        elif optiune == "5":
+            numar = int (input ("Introduceti numarul "))
+            if is_palindrome(numar) == True:
+                print("Numarul dat este palindrom")
+            else:
+                print("Numarul dat nu este palindrom")
         elif optiune == "x":
             shouldRun = False
         else:
